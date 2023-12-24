@@ -1,7 +1,7 @@
 def playground(playground):
-    width = 16
+    width = len(playground[0])
     res = ['┌' + '─' * width + '┐']
-    for s in playground:
-        res.append('│' + (''.join(s) + ' ' * width)[:width] + '│')
+    for r in playground:
+        res.append('│' + (''.join(r) + ' ' * width)[:width] + '│')
     res.append('└' + '─' * width + '┘')
     return '\n'.join(res)

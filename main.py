@@ -5,6 +5,7 @@ import os
 import random
 
 playground = [[' ' for i in range(WIDTH)] for j in range(HEIGHT)]
+colors = [['white' for i in range(WIDTH+2)] for j in range(HEIGHT+2)]
 
 
 class Shapes:
@@ -17,12 +18,10 @@ class Shapes:
 
     def random(self):
         rand_num = random.randint(0, 3)
-        return self.all_shape[rand_num]
+        return self.all_shape[rand_num], rand_num
 
 
 s = Shapes()
+shape, rand_num = s.random()
 
-shape = s.random()
-
-show.fall_shape(playground, shape)
-
+show.fall_shape(playground, shape, colors, rand_num)

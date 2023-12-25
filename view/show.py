@@ -59,7 +59,7 @@ def fall_shape(playground, shape, colors, rand_num):
                     colors[row + 1][c + 2] = config_color(rand_num)
 
             play_ground(playground, colors)
-            sleep(0.5)
+            sleep(FALL_SPEED)
 
             # Exception for shape 4 (end stop problem -> fixed)
             if not other and row == HEIGHT - 1:
@@ -77,7 +77,7 @@ def fall_shape(playground, shape, colors, rand_num):
                         colors[row + 1][c + 1] = config_color(rand_num)
                         colors[row + 1][c + 2] = config_color(rand_num)
                 play_ground(playground, colors)
-                sleep(0.5)
+                sleep(FALL_SPEED)
 
             if row != HEIGHT - 1 and under_empty(playground, shape, row + 1):
                 # removing the printed shape (same to printing)

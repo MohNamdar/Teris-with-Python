@@ -1,3 +1,5 @@
+from config import *
+
 def under_empty(playground, shape, row):
     first = len(shape[0])
     other = 4 - first
@@ -19,3 +21,10 @@ def under_empty(playground, shape, row):
         return True
 
     return False
+
+
+def game_over(playground):
+    for i in range(0, WIDTH, 2):
+        if playground[0][i] == '[':
+            return 1
+    return 0

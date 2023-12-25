@@ -1,10 +1,11 @@
 from view import show
 from config import *
+from calculate.block_detector import game_over
 from time import sleep
 import os
 import random
 
-playground = [['*' for i in range(WIDTH)] for j in range(HEIGHT)]
+playground = [[' ' for i in range(WIDTH)] for j in range(HEIGHT)]
 colors = [['white' for i in range(WIDTH+2)] for j in range(HEIGHT+2)]
 
 
@@ -24,14 +25,22 @@ class Shapes:
 s = Shapes()
 
 while True:
-    shape = s.all_shape[0]
-    show.fall_shape(playground, shape, colors, 0)
+    # shape = s.all_shape[0]
+    # show.fall_shape(playground, shape, colors, 0)
+    #
+    # shape = s.all_shape[1]
+    # show.fall_shape(playground, shape, colors, 1)
+    #
+    # shape = s.all_shape[2]
+    # show.fall_shape(playground, shape, colors, 2)
+    #
+    # shape = s.all_shape[3]
+    # show.fall_shape(playground, shape, colors, 3)
 
-    shape = s.all_shape[1]
-    show.fall_shape(playground, shape, colors, 1)
+    shape, rand_num = s.random()
+    show.fall_shape(playground, shape, colors, rand_num)
 
-    shape = s.all_shape[2]
-    show.fall_shape(playground, shape, colors, 2)
+    if game_over(playground):
+        print('GAME0VER!')
+        break
 
-    shape = s.all_shape[3]
-    show.fall_shape(playground, shape, colors, 3)

@@ -66,24 +66,24 @@ def fall_shape(playground, shape, colors, rand_num):
                     playground[row - 1][c + 1] = ' '
 
             os.system('cls')
-            row += 1
             for i in range(first):
                 for c in shape[0]:
-                    playground[row - 1][c] = '['
-                    playground[row - 1][c + 1] = ']'
+                    playground[row][c] = '['
+                    playground[row][c + 1] = ']'
 
-                    colors[row][c + 1] = config_color(rand_num)
-                    colors[row][c + 2] = config_color(rand_num)
+                    colors[row + 1][c + 1] = config_color(rand_num)
+                    colors[row + 1][c + 2] = config_color(rand_num)
             play_ground(playground, colors)
             sleep(0.5)
 
-        # removing the printed shape (same to printing)
-        for i in range(first):
-            for c in shape[0]:
-                playground[row - 1][c] = ' '
-                playground[row - 1][c + 1] = ' '
+        if row != HEIGHT - 1:
+            # removing the printed shape (same to printing)
+            for i in range(first):
+                for c in shape[0]:
+                    playground[row - 1][c] = ' '
+                    playground[row - 1][c + 1] = ' '
 
-        if other != 0:
+        if other != 0 and row != HEIGHT - 1:
             for c in shape[1]:
                 playground[row][c] = ' '
                 playground[row][c + 1] = ' '

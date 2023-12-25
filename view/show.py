@@ -2,6 +2,7 @@ from config import *
 from time import sleep
 import os
 from termcolor import colored
+from calculate.block_detector import under_empty
 
 
 def play_ground(playground, colors):
@@ -31,62 +32,64 @@ def play_ground(playground, colors):
 
 def fall_shape(playground, shape, colors, rand_num):
     first = len(shape[0])
-    other = first - 4
+    other = 4 - first
 
     for row in range(1, HEIGHT):
 
-        # clear for print next frame
-        os.system('cls')
-        # printing first line of shape
-        for i in range(first):
-            for c in shape[0]:
-                playground[row - 1][c] = '['
-                playground[row - 1][c + 1] = ']'
+        if under_empty(playground, shape, row):
 
-                colors[row][c + 1] = config_color(rand_num)
-                colors[row][c + 2] = config_color(rand_num)
-
-        # print second line of shape (if exist)
-        if other != 0:
-            for c in shape[1]:
-                playground[row][c] = '['
-                playground[row][c + 1] = ']'
-
-                colors[row + 1][c + 1] = config_color(rand_num)
-                colors[row + 1][c + 2] = config_color(rand_num)
-
-        play_ground(playground, colors)
-        sleep(0.5)
-
-        # Exception for shape 4 (end stop problem -> fixed)
-        if not other and row == HEIGHT - 1:
-            for i in range(first):
-                for c in shape[0]:
-                    playground[row - 1][c] = ' '
-                    playground[row - 1][c + 1] = ' '
-
+            # clear for print next frame
             os.system('cls')
+            # printing first line of shape
             for i in range(first):
                 for c in shape[0]:
+                    playground[row - 1][c] = '['
+                    playground[row - 1][c + 1] = ']'
+
+                    colors[row][c + 1] = config_color(rand_num)
+                    colors[row][c + 2] = config_color(rand_num)
+
+            # print second line of shape (if exist)
+            if other != 0:
+                for c in shape[1]:
                     playground[row][c] = '['
                     playground[row][c + 1] = ']'
 
                     colors[row + 1][c + 1] = config_color(rand_num)
                     colors[row + 1][c + 2] = config_color(rand_num)
+
             play_ground(playground, colors)
             sleep(0.5)
 
-        if row != HEIGHT - 1:
-            # removing the printed shape (same to printing)
-            for i in range(first):
-                for c in shape[0]:
-                    playground[row - 1][c] = ' '
-                    playground[row - 1][c + 1] = ' '
+            # Exception for shape 4 (end stop problem -> fixed)
+            if not other and row == HEIGHT - 1:
+                for i in range(first):
+                    for c in shape[0]:
+                        playground[row - 1][c] = ' '
+                        playground[row - 1][c + 1] = ' '
 
-        if other != 0 and row != HEIGHT - 1:
-            for c in shape[1]:
-                playground[row][c] = ' '
-                playground[row][c + 1] = ' '
+                os.system('cls')
+                for i in range(first):
+                    for c in shape[0]:
+                        playground[row][c] = '['
+                        playground[row][c + 1] = ']'
+
+                        colors[row + 1][c + 1] = config_color(rand_num)
+                        colors[row + 1][c + 2] = config_color(rand_num)
+                play_ground(playground, colors)
+                sleep(0.5)
+
+            if row != HEIGHT - 1 and under_empty(playground, shape, row + 1):
+                # removing the printed shape (same to printing)
+                for i in range(first):
+                    for c in shape[0]:
+                        playground[row - 1][c] = ' '
+                        playground[row - 1][c + 1] = ' '
+
+            if other != 0 and row != HEIGHT - 1 and under_empty(playground, shape, row + 1):
+                for c in shape[1]:
+                    playground[row][c] = ' '
+                    playground[row][c + 1] = ' '
 
 
 def config_color(shape_num):

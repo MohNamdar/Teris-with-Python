@@ -3,6 +3,7 @@ from time import sleep
 import os
 from termcolor import colored
 from calculate.block_detector import under_empty
+import keyboard
 
 
 def play_ground(playground, colors):

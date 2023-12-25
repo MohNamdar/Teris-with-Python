@@ -6,7 +6,7 @@ import os
 import random
 
 playground = [[' ' for i in range(WIDTH)] for j in range(HEIGHT)]
-colors = [['white' for i in range(WIDTH+2)] for j in range(HEIGHT+2)]
+colors = [['white' for i in range(WIDTH + 2)] for j in range(HEIGHT + 2)]
 
 
 class Shapes:
@@ -25,22 +25,15 @@ class Shapes:
 s = Shapes()
 
 while True:
-    # shape = s.all_shape[0]
-    # show.fall_shape(playground, shape, colors, 0)
-    #
-    # shape = s.all_shape[1]
-    # show.fall_shape(playground, shape, colors, 1)
-    #
-    # shape = s.all_shape[2]
-    # show.fall_shape(playground, shape, colors, 2)
-    #
-    # shape = s.all_shape[3]
-    # show.fall_shape(playground, shape, colors, 3)
 
     shape, rand_num = s.random()
-    show.fall_shape(playground, shape, colors, rand_num)
-
-    if game_over(playground):
-        print('GAME0VER!')
+    do = show.fall_shape(playground, shape, colors, rand_num)
+    # shape = s.all_shape[1]
+    # do = show.fall_shape(playground, shape, colors, 1)
+    if do == 'esc':
+        print("Scape....")
         break
 
+    if game_over(playground):
+        print("GAME0VER!")
+        break

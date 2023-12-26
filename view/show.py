@@ -104,6 +104,8 @@ def fall_shape(playground, shape, colors, rand_num):
                 for c in shape[1]:
                     playground[row][c + move] = ' '
                     playground[row][c + 1 + move] = ' '
+        else:
+            break
 
 
 def config_color(shape_num):
